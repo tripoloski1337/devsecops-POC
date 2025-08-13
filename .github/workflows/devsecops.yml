@@ -19,6 +19,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        run: ls;pwd
       - name: Depcheck
         uses: dependency-check/Dependency-Check_Action@main
         id: Depcheck
