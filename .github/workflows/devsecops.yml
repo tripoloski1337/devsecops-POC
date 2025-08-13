@@ -35,7 +35,7 @@ jobs:
       - name: run SAST scan
         run: echo 'hello sast'
   
-  DAST:
+  Container-Scan:
     needs: SAST # This job depends on the 'build' job
     runs-on: ubuntu-latest
     steps:
@@ -45,9 +45,9 @@ jobs:
         run: echo 'hello rule'
       - name: run SAST scan
         run: echo 'hello sast'
-
-  Container-Scan:
-    needs: DAST # This job depends on the 'build' job
+        
+  DAST:
+    needs: Container-Scan # This job depends on the 'build' job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -56,3 +56,4 @@ jobs:
         run: echo 'hello rule'
       - name: run SAST scan
         run: echo 'hello sast'
+
