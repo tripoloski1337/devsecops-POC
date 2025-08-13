@@ -73,7 +73,7 @@ jobs:
       - name: Run trivy scanner
         uses: aquasecurity/trivy-action@master
         with:
-          scan-type: 'image'
+          scan-type: 'filesystem'
           scan-ref: '.'
           format: 'sarif'
           output: 'trivy-results.sarif'
