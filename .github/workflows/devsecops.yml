@@ -94,3 +94,10 @@ jobs:
       - name: run SAST scan
         run: echo 'hello sast'
 
+  Docker-Compile:
+    needs: DAST
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
