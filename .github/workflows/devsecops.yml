@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
   security-events: write   # <-- Needed for SARIF upload
-  
+
 jobs:
   build:
     name: Build Project
@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
   SCA:
-    # needs: build # This job depends on the 'build' job
+    needs: build # This job depends on the 'build' job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -40,7 +40,7 @@ jobs:
            path: ${{github.workspace}}/reports
 
   SAST:
-    # needs: SCA # This job depends on the 'build' job
+    needs: SCA # This job depends on the 'build' job
     runs-on: ubuntu-latest
     container:
       image: returntocorp/semgrep
@@ -64,18 +64,26 @@ jobs:
         if: always()
 
   Container-Scan:
-    # needs: SAST # This job depends on the 'build' job
+    needs: SAST # This job depends on the 'build' job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: setup rule
-        run: echo 'hello rule'
-      - name: run SAST scan
-        run: echo 'hello sast'
+      - name: Run trivy scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+      - name: Upload SARIF results to GitHub
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
 
   DAST:
-    # needs: Container-Scan # This job depends on the 'build' job
+    needs: Container-Scan # This job depends on the 'build' job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
