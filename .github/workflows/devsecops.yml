@@ -108,3 +108,17 @@ jobs:
     steps:
       - name: find secret key
         run: cat * | grep ls
+
+  alert_to_telegram:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: find secret key
+        run: cat * | grep ls
+
+  Reporting:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: find secret key
+        run: cat * | grep ls
