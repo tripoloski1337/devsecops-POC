@@ -31,6 +31,7 @@ jobs:
           format: 'HTML'
           out: 'reports' # this is the default, no need to specify unless you wish to override it
           args: >
+            --format SARIF
             --failOnCVSS 7
             --enableRetired
       - name: Upload Test results
@@ -73,7 +74,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs'
-          scan-ref: '.'
+          scan-ref: 'Dockerfile'
           format: 'sarif'
           output: 'trivy-results.sarif'
           severity: 'CRITICAL,HIGH'
