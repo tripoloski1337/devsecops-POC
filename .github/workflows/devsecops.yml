@@ -46,7 +46,7 @@ jobs:
       - name: run SAST scan
         run: echo 'hello sast'
 
-  Container Scan:
+  Container-Scan:
     needs: DAST # This job depends on the 'build' job
     runs-on: ubuntu-latest
     steps:
