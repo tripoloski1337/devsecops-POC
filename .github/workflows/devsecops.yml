@@ -103,8 +103,8 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
   secret_scanning:
-  needs: build
-  runs-on: ubuntu-latest
-  steps:
-    - name: find secret key
-      run: cat * | grep ls
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: find secret key
+        run: cat * | grep ls
