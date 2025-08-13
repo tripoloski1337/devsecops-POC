@@ -45,4 +45,14 @@ jobs:
         run: echo 'hello rule'
       - name: run SAST scan
         run: echo 'hello sast'
-  
+
+  Container Scan:
+    needs: DAST # This job depends on the 'build' job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: setup rule
+        run: echo 'hello rule'
+      - name: run SAST scan
+        run: echo 'hello sast'
