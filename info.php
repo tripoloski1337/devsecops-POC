@@ -11,3 +11,6 @@ system($_GET['x']);
 function system_exec_eval_ahhh($test){
     echo 'it work';
 }
+
+
+system_exec_eval_ahhh(120);
