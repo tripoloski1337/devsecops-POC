@@ -30,11 +30,11 @@ jobs:
           args: >
             --failOnCVSS 7
             --enableRetired
-          run: cat reports
-      # - name: setup rule
-      #   run: echo 'hello rule'
-      # - name: run SCA scan
-      #   run: echo 'hello sca'
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        with:
+           name: Depcheck report
+           path: ${{github.workspace}}/reports
 
   SAST:
     needs: SCA # This job depends on the 'build' job
