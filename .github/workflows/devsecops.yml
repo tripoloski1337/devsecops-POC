@@ -7,22 +7,30 @@ on:
 
 jobs:
   build:
-    name: apa
+    name: Build Project
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # - name: Set up Node.js
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: '16'
-
-      - name: SCA
-        run: echo 'hello for SCA'
-
-      - name: SAST
-        run: echo 'hello for sast'
-
-      - name: Build project
-        run: echo 'deploy'
+  SCA:
+    needs: build # This job depends on the 'build' job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: setup rule
+        run: echo 'hello rule'
+      - name: run SCA scan
+        run: echo 'hello sca'
+        
+  SAST:
+    needs: SCA # This job depends on the 'build' job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: setup rule
+        run: echo 'hello rule'
+      - name: run SAST scan
+        run: echo 'hello sast'
