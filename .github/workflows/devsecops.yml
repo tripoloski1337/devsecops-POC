@@ -25,7 +25,7 @@ jobs:
         run: echo 'hello sca'
 
   SAST:
-    needs: build # This job depends on the 'build' job
+    needs: SCA # This job depends on the 'build' job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -36,7 +36,7 @@ jobs:
         run: echo 'hello sast'
   
   DAST:
-    needs: build # This job depends on the 'build' job
+    needs: SAST # This job depends on the 'build' job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
