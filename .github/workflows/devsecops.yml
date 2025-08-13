@@ -4,7 +4,10 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
+permissions:
+  contents: read
+  security-events: write   # <-- Needed for SARIF upload
+  
 jobs:
   build:
     name: Build Project
@@ -53,12 +56,12 @@ jobs:
           name: semgrep-scan-results
           path: semgrep-results.sarif
 
-      # # Upload SARIF file generated in previous step
-      # - name: Upload SARIF result to the GitHub Security Dashboard
-      #   uses: github/codeql-action/upload-sarif@v3
-      #   with:
-      #     sarif_file: semgrep-results.sarif
-      #   if: always()
+      # Upload SARIF file generated in previous step
+      - name: Upload SARIF result to the GitHub Security Dashboard
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep-results.sarif
+        if: always()
 
   Container-Scan:
     # needs: SAST # This job depends on the 'build' job
