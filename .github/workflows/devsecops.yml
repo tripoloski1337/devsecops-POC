@@ -131,7 +131,7 @@ jobs:
       - name: secret scanning
         uses: trufflesecurity/trufflehog@main
         with:
-          extra_args: --entropy=True --results=verified,unknown,unverified --only-verified=False
+          extra_args: --results=verified,unknown,unverified --only-verified=False
 
 
   push-to-container-registery:
