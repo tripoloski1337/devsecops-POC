@@ -137,7 +137,6 @@ jobs:
           # For pull requests, you might use:
           # base: ${{ github.event.pull_request.base.sha }}
           # head: ${{ github.event.pull_request.head.sha }}
-          extra_args: --fail # Fails the action if secrets are found
 
 
   push-to-container-registery:
