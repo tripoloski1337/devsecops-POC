@@ -95,7 +95,7 @@ jobs:
       - name: run SAST scan
         run: echo 'hello sast'
 
-  secret-scanning: 
+  secret-scanning-kingfisher: 
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -117,6 +117,19 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: 'findings.sarif'
+  
+  secret-scanning-trufflehog:
+    needs: build
+    runs-on: ubuntu-latest
+    # container:
+    #   image: trufflesecurity/trufflehog:latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+      - name: secret scanning
+        uses: trufflesecurity/trufflehog@main
+        with:
+          extra_args: --results=verified,unknown
 
 
   push-to-container-registery:
