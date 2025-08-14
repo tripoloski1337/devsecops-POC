@@ -131,7 +131,13 @@ jobs:
       - name: secret scanning
         uses: trufflesecurity/trufflehog@main
         with:
-          extra_args: --results=verified,unknown,unverified 
+          path: . # Scans the entire repository
+          base: ${{ github.event.before }} # For push events
+          head: ${{ github.sha }} # For push events
+          # For pull requests, you might use:
+          # base: ${{ github.event.pull_request.base.sha }}
+          # head: ${{ github.event.pull_request.head.sha }}
+          extra_args: --fail # Fails the action if secrets are found
 
 
   push-to-container-registery:
