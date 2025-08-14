@@ -104,7 +104,7 @@ jobs:
       - name: Check folder
         run: ls -las
       - name: Run kingfisher
-        uses: mongodb/kingfisher@main
+        uses: mongodb/kingfisher/docker@main
         with:
           args: >
             scan ./
