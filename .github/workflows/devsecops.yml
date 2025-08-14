@@ -103,10 +103,11 @@ jobs:
         uses: actions/checkout@v4
       - name: Run kingfisher
         uses: mongodb/kingfisher@main
-        args: >
-          scan ./
-          --format sarif 
-          --output findings.sarif
+        with:
+          args: >
+            scan ./
+            --format sarif 
+            --output findings.sarif
       - name: Upload SARIF results to GitHub
         uses: github/codeql-action/upload-sarif@v3
         with:
