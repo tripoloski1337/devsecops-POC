@@ -108,6 +108,7 @@ jobs:
         with:
           args: >
             scan .
+            --scanner secrets
             --format sarif 
             --output findings.sarif
       - name: check sarif
