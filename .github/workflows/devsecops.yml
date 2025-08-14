@@ -138,7 +138,7 @@ jobs:
 
 
   push-to-container-registery:
-    needs: [SCA, SAST, Container-Scan, DAST]
+    needs: [SCA, SAST, Container-Scan, DAST, secret-scanning-kingfisher, secret-scanning-trufflehog]
     runs-on: ubuntu-latest
     steps:
       - name: Set up Docker Buildx
