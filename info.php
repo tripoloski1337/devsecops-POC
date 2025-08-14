@@ -3,6 +3,7 @@
 // hardcoded token
 $TOKEN = '212121021020120102199993993';
 $API_KEY = '1020102010210kfmakdmkmsadimdimsdimsa='
+$GOOGLE_API_KEY = 'AIzaSyDaGmWKa4JsXZ-HjGw7ISLn_3namBGewQe'
 
 phpinfo();
 
