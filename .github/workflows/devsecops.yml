@@ -126,6 +126,8 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: secret scanning
         uses: trufflesecurity/trufflehog@main
         with:
