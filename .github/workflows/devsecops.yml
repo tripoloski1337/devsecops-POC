@@ -107,7 +107,7 @@ jobs:
         uses: mongodb/kingfisher/docker@main
         with:
           args: >
-            scan ./
+            scan .
             --format sarif 
             --output findings.sarif
       - name: check sarif
