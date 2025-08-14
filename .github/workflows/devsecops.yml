@@ -128,15 +128,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: secret scanning
+      - name: TruffleHog
         uses: trufflesecurity/trufflehog@main
         with:
-          path: . # Scans the entire repository
-          base: ${{ github.event.before }} # For push events
-          head: ${{ github.sha }} # For push events
-          # For pull requests, you might use:
-          # base: ${{ github.event.pull_request.base.sha }}
-          # head: ${{ github.event.pull_request.head.sha }}
+          # Repository path
+          path: .
+          # Start scanning from here (usually main branch).
+          extra_args: --log-level=2 --results=verified,unknown
 
 
   push-to-container-registery:
